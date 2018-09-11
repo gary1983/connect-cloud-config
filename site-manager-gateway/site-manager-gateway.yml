@@ -10,7 +10,7 @@ jsonrpc.request:
     AdminCrudManager.queryRoles: /api/jaru/roles
     AdminCrudManager.deleteRole: /api/jaru/roles/delete
 action:
-  contextPath: /emerson
+  contextPath: /connect
   redirects:
     RoleAdd:
       path: /RoleDoCreateUpdate.do
