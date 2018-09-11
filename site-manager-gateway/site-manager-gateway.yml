@@ -4,13 +4,11 @@ jsonrpc.request:
     AdminCrudManager.queryRoles: site-manager-uaa
     AdminCrudManager.deleteUser: site-manager-uaa
     AdminCrudManager.deleteRole: site-manager-uaa
-    ActivityManager.getActivityStatus： site-manager-activity
   routeURIs:
     AdminCrudManager.queryUsers: /api/jaru/users
     AdminCrudManager.deleteUser: /api/jaru/users/delete
     AdminCrudManager.queryRoles: /api/jaru/roles
     AdminCrudManager.deleteRole: /api/jaru/roles/delete
-    ActivityManager.getActivityStatus： /api/jaru/activities/status
 action:
   contextPath: /emerson
   redirects:
