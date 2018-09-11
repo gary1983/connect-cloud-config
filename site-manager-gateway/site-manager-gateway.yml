@@ -1,0 +1,65 @@
+jsonrpc.request:
+  routeMethods:
+    AdminCrudManager.queryUsers: site-manager-uaa
+    AdminCrudManager.queryRoles: site-manager-uaa
+    AdminCrudManager.deleteUser: site-manager-uaa
+    AdminCrudManager.deleteRole: site-manager-uaa
+    ActivityManager.getActivityStatus： site-manager-activity
+  routeURIs:
+    AdminCrudManager.queryUsers: /api/jaru/users
+    AdminCrudManager.deleteUser: /api/jaru/users/delete
+    AdminCrudManager.queryRoles: /api/jaru/roles
+    AdminCrudManager.deleteRole: /api/jaru/roles/delete
+    ActivityManager.getActivityStatus： /api/jaru/activities/status
+action:
+  contextPath: /emerson
+  redirects:
+    RoleAdd:
+      path: /RoleDoCreateUpdate.do
+      bizActionName: AddRole
+      serviceId: site-manager-uaa
+      serviceURI: /api/jaru/roles/add
+      returnURI: /RoleManager.do?bizActionName=AdminRoleManager
+    RoleEdit:
+      path: /RoleDoCreateUpdate.do
+      bizActionName: EditRole
+      serviceId: site-manager-uaa
+      serviceURI: /api/jaru/roles/edit
+      returnURI: /RoleManager.do?bizActionName=AdminRoleManager
+    UserAdd:
+      path: /UserDoCreateUpdate.do
+      bizActionName: AddUser
+      serviceId: site-manager-uaa
+      serviceURI: /api/jaru/users/create
+      returnURI: /UserManager.do?bizActionName=AdminUserManager
+    UserEdit:
+      path: /UserDoCreateUpdate.do
+      bizActionName: EditUser
+      serviceId: site-manager-uaa
+      serviceURI: /api/jaru/users/edit
+      returnURI: /UserManager.do?bizActionName=AdminUserManager
+    Login:
+      path: /DoLoginAction.do
+      bizActionName:
+      serviceId: site-manager-uaa
+      serviceURI: /jaru/auth
+      returnURI: /DoLoginAction.do
+    RefreshUnit:
+      path: /ExecuteActivity.do
+      bizActionName: ControlSystemInventory
+      serviceId: site-manager-activity
+      serviceURI: /api/activities/execute
+      returnURI: /ActivityDetails.do?activityInstanceId={activityInstanceId}&displayCancelButton=true&updateTree=true
+    RefreshApplication:
+      path: /ExecuteActivity.do
+      bizActionName: UnitInventory
+      serviceId: site-manager-activity
+      serviceURI: /api/activities/execute
+      returnURI: /ActivityDetails.do?activityInstanceId={activityInstanceId}&displayCancelButton=true&updateTree=true
+
+
+login:
+  url: DoLoginAction.do
+  cookie.name: ACCESS_TOKEN
+  authorization.header: Authorization
+  authorization.prefix: Bearer

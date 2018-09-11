@@ -1,0 +1,5 @@
+spring.rabbitmq:
+  host: CNXA1ER-D0585A
+  port: 5672
+  username: sitemanager
+  password: sitemanager
