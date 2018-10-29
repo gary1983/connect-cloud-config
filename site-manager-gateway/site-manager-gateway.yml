@@ -23,7 +23,7 @@ jsonrpc.request:
     ActivityManager.getActivityStatus: 501
     ActivityManager.getActivityStartup: 501
 action:
-  contextPath: /emerson
+  contextPath: /connect
   redirects:
     RoleAdd:
       path: /RoleDoCreateUpdate.do
