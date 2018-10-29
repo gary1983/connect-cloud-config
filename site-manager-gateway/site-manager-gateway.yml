@@ -5,14 +5,25 @@ jsonrpc.request:
     AdminCrudManager.deleteUser: site-manager-uaa
     AdminCrudManager.deleteRole: site-manager-uaa
     ActivityManager.getActivityStatus: site-manager-legacy
+    ActivityManager.getActivityStartup: site-manager-legacy
+    PointServices.GetPointStatus: site-manager-point
+    PointServices.Override: site-manager-point
+    PointServices.SetValue: site-manager-point
   routeURIs:
     AdminCrudManager.queryUsers: /api/jaru/users
     AdminCrudManager.deleteUser: /api/jaru/users/delete
     AdminCrudManager.queryRoles: /api/jaru/roles
     AdminCrudManager.deleteRole: /api/jaru/roles/delete
     ActivityManager.getActivityStatus: /api/jaru/activities/status
+    ActivityManager.getActivityStartup: /api/jaru/activities/startup
+    PointServices.GetPointStatus: /api/pointValue/singleTrip
+    PointServices.Override: /api/pointValue/override
+    PointServices.SetValue: /api/pointValue/modify
+  failFallbacks:
+    ActivityManager.getActivityStatus: 501
+    ActivityManager.getActivityStartup: 501
 action:
-  contextPath: /connect
+  contextPath: /emerson
   redirects:
     RoleAdd:
       path: /RoleDoCreateUpdate.do
@@ -56,6 +67,12 @@ action:
       serviceId: site-manager-activity
       serviceURI: /api/activities/execute
       returnURI: /ActivityDetails.do?activityInstanceId={activityInstanceId}&displayCancelButton=true&updateTree=true
+    RefreshPoint:
+      path: /ExecuteActivity.do
+      bizActionName: GetPointInventory
+      serviceId: site-manager-activity
+      serviceURI: /api/activities/execute
+      returnURI: /ActivityDetails.do?activityInstanceId={activityInstanceId}&displayCancelButton=true&updateTree=true
 
 
 login:
@@ -63,3 +80,11 @@ login:
   cookie.name: ACCESS_TOKEN
   authorization.header: Authorization
   authorization.prefix: Bearer
+spring.zipkin:
+  sender:
+    type: rabbit
+  service:
+    name: ${spring.application.name}
+spring.sleuth:
+  sampler:
+    probability: 1.0
